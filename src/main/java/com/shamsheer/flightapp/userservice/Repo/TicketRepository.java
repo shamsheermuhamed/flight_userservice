@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.shamsheer.flightapp.userservice.Entity.Ticket;
+import com.shamsheer.flightapp.userservice.Entity.User;
 
 
 
@@ -16,7 +17,8 @@ import com.shamsheer.flightapp.userservice.Entity.Ticket;
 public interface TicketRepository extends CrudRepository<Ticket, Integer> {
 	
 	//@Query(value="select t from Ticket t where t.user_details=(select s from User s where t.user_id=?1)" )
-	List<Ticket> findByUserdetailsId(Integer userId);
+	List<Ticket> findByUserdetails(Optional<User> user);
+	
 
 	
 }

@@ -23,8 +23,7 @@ public class CustomUserDetails implements UserDetails {
 				collect(Collectors.toList());
 		this.role=user.getRole();
 	}
-	
-	
+		
 	
 	public String getRole() {
 		return role;

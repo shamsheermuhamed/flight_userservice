@@ -29,10 +29,10 @@ public class TicketService {
 		return repo.findAll();
 	}
 	
-	public List<Ticket> getAllTicketsByUser(Integer userId)
-	{
-		return repo.findByUserdetailsId(userId);
-	}
+//	public List<Ticket> getAllTicketsByUser(Integer userId)
+//	{
+//		return repo.findByUserdetails(userId);
+//	}
 	public void createTicket(Ticket ticket)
 	{
 		

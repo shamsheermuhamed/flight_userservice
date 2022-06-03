@@ -19,6 +19,9 @@ import org.springframework.web.client.RestTemplate;
 import com.shamsheer.flightapp.userservice.Entity.Discount;
 import com.shamsheer.flightapp.userservice.Entity.Passengers;
 import com.shamsheer.flightapp.userservice.Entity.Ticket;
+import com.shamsheer.flightapp.userservice.Entity.User;
+import com.shamsheer.flightapp.userservice.Repo.TicketRepository;
+import com.shamsheer.flightapp.userservice.Repo.UserRepository;
 import com.shamsheer.flightapp.userservice.Service.PassengersService;
 import com.shamsheer.flightapp.userservice.Service.TicketService;
 
@@ -37,22 +40,29 @@ public class TicketController {
 	@Autowired
 	PassengersService passservice;
 	
+	@Autowired
+	TicketRepository repo;
+	
+	@Autowired
+	UserRepository userrepo;
+	
 	@GetMapping(value="/tickets")
 	Iterable<Ticket> getAllTickets()
 	{
 		return service.getAllTickets();
 	}
 	
-	@GetMapping(value="/tickets/{ticketid}")
+	@GetMapping(value="/tickets/ticket/{ticketid}")
 	Optional<Ticket> getByTicketId(@PathVariable Integer ticketid)
 	{
 		return service.getByTicketId(ticketid);
 	}
 	
-	@GetMapping(value="/tickets/user/{id}")
-	List<Ticket> getAllBookedTicketsByUser(@PathVariable Integer id)
+	@GetMapping(value="/tickets/{userid}")
+	List<Ticket> getAllBookedTicketsByUser(@PathVariable Integer userid)
 	{
-		return service.getAllTicketsByUser(id);
+		Optional<User> user=userrepo.findById(userid);
+		return repo.findByUserdetails(user);
 	}
 	
 	/////Adding and updating tickets
